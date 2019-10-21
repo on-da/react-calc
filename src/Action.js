@@ -27,3 +27,7 @@ export const onEditClick=()=>({
 export const onClearClick=()=>({
     type:actionTypes.CLEAR,
 });
+
+export const onDotClick=()=>({
+    type:actionTypes.INPUT_DOT,
+});

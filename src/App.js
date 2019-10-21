@@ -5,6 +5,7 @@ import './App.css';
 
 import * as actions from "./Action";
 import NumBtn from "./components/NumBtn";
+import DotBtn from "./components/DotBtn";
 import CalcBtn from "./components/CalcBtn";
 import Result from "./components/Result";
 import ClearAll from "./components/ClearAll";
@@ -21,8 +22,8 @@ class App extends react.Component {
               ? calculator.resultValue : calculator.inputValue} />
           </div>
           <div className="topBtn">
-            <ClearAll />
-            <button>BS</button>
+            <ClearAll clearKey={"AC"} onClick={()=>actions.onClearClick()} />
+            <button></button>
             <button></button>
             <span className="opBtn">
               <CalcBtn calcKey={"+"} onClick={() => actions.onPlusClick()} />
@@ -56,7 +57,7 @@ class App extends react.Component {
           <div>
             <span className="underBtn">
               <NumBtn numKey={0} onClick={() => actions.onNumClick(0)} />
-              <NumBtn numKey={"."} onClick={() => actions.onNumClick(".")} />
+              <DotBtn dotKey={"."} onClick={() => actions.onDotClick(".")} />
             </span>
             <CalcBtn calcKey={"="} onClick={() => actions.onEditClick()} />
             <button></button>

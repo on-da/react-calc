@@ -1,9 +1,11 @@
 import * as actionTypes from "../actionTypes";
 
+
 const initialAppState = {
     inputValue: 0, //入力された値
     operation: "", //演算子
     resultValue: 0, //計算結果
+    dotNumber:false,//小数点
     calculate: false, //計算を行うかの判断
     showingResult: false, //結果を表示するかの判断
 };
@@ -11,11 +13,30 @@ const initialAppState = {
 const calculator = (state = initialAppState, action) => {
     switch (action.type) {
         case actionTypes.INPUT_NUMBER:
-            return {
+            if(state.dotNumber===false){
+        　　　　return {
                 ...state,
                 inputValue: state.inputValue * 10 + action.number,
                 showingResult: false,
-            };
+                
+                };
+            }else{
+                return{
+                    ...state,
+                    inputValue: Number(state.inputValue +"."+action.number),
+                    dotNumber:false,
+                    showingResult:false,
+                };
+            }
+
+        case actionTypes.INPUT_DOT:
+            return{
+                ...state,
+                dotNumber:true,
+            }
+
+
+
 
         case actionTypes.PLUS:
             if (state.calculate === true) {
@@ -102,9 +123,11 @@ const calculator = (state = initialAppState, action) => {
                 inputValue: 0,
                 operation: "",
                 calculate: false,
+                dotNumber:false,
                 resultValue: 0,
                 showingResult: false,
             };
+
         case actionTypes.EDIT:
             switch (state.operation) {
                 case "+":
@@ -112,6 +135,7 @@ const calculator = (state = initialAppState, action) => {
                         inputValue: state.resultValue + state.inputValue,
                         operation: "",
                         calculate: false,
+                        dotNumber:false,
                         resultValue: state.resultValue + state.inputValue,
                         showingResult: true,
                     };
@@ -121,6 +145,7 @@ const calculator = (state = initialAppState, action) => {
                         inputValue: state.resultValue - state.inputValue,
                         operation: "",
                         calculate: false,
+                        dotNumber:false,
                         resultValue: state.resultValue - state.inputValue,
                         showingResult: true,
                     };
@@ -129,6 +154,7 @@ const calculator = (state = initialAppState, action) => {
                         inputValue: state.resultValue * state.inputValue,
                         operation: "",
                         calculate: false,
+                        dotNumber:false,
                         resultValue: state.resultValue * state.inputValue,
                         showingResult: true,
                     };
@@ -137,6 +163,7 @@ const calculator = (state = initialAppState, action) => {
                         inputValue: state.resultValue / state.inputValue,
                         operation: "",
                         calculate: false,
+                        dotNumber:false,
                         resultValue: state.resultValue / state.inputValue,
                         showingResult: true, 
                     };    

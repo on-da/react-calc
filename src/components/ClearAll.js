@@ -1,5 +1,5 @@
 import React from "react";
 
-const ClearAll=()=>(<button>AC</button>);
+const ClearAll=({clearKey,onClick})=>(<button onClick={onClick}>{clearKey}</button>);
 
 export default ClearAll;
